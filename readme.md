@@ -12,6 +12,7 @@
 - [``` git clone https://github.com/sokhasen/ng5-laravel5.5-starter.git ```]
 - [``` cd ng5-laravel5.5-starter ```]
 - [``` composer install ```]
+- copy [``` .env.example ```] to [``` .env ```] file
 - [``` php artisan key:generate ```]
 - [``` npm install ```]
 - [``` ng build ``` or ``` ng build -w```]
