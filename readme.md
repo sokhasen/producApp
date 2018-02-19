@@ -8,6 +8,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## How to install
+- [``` git clone https://github.com/sokhasen/ng5-laravel5.5-starter.git ```]
+- [``` cd ng5-laravel5.5-starter ```]
+- [``` composer install ```]
+- [``` php artisan key:generate ```]
+- [``` npm install ```]
+- [``` ng build ``` or ``` ng build -w```]
+- [``` php artisan serve ```]
+- [ See on : http://localhost:8000/]
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
