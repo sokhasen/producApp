@@ -18,6 +18,39 @@
 - [``` php artisan serve ```]
 - [ See on : http://localhost:8000/]
 
+
+## Where Angular App
+ ```
+  |---ng5-laravel5.5-starter
+  |   |---app
+  |   |---databases
+  |   |---public
+  |   |   |---js
+  |   |   |---css
+  |   |   |---dist <-- ( ## here is your production )
+  |   |   |---index.php
+  |   |---resources
+  |   |   |---assets
+  |   |   |   |---js
+  |   |   |   |---sass
+  |   |   |   |---src <-- ( ## Angular app here )
+  |   |   |   
+  |   |   |---lang
+  |   |   |---view
+  |   |       |---index.blade.php <-- ( ## root directive app and build bundle js are here )
+  |   |      
+  |   |---routes
+  |   |---vendor
+  |   |---.env
+  |   |---package.json      <-- ( ## Angular Devdependcies )
+  |   |---tsconfig.json     <-- ( ## Typescript configuration )
+  |   |---tslint.json       <-- ( ## extensible static analysis tool for typescript )
+  |   |---.angular-cli.json <-- ( ## angular cli generate dev eg. ```ng g component my-new-components``` )
+  |   |---webpack.mix.js
+  |
+ ```
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
