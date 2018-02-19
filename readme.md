@@ -1,4 +1,5 @@
-<p align="center"><img src="http://creative-punch.net/wp-content/uploads/2014/01/Angular_Laravel.jpg"> <div>By Sokha Sen</div></p>
+<p align="center"><img width="150px" src="http://creative-punch.net/wp-content/uploads/2014/01/Angular_Laravel.jpg"></p>
+<p align="center">By : <strong>Sokha Sen</strong></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
