@@ -1,0 +1,128 @@
+<div class="card m-5">
+    <div class="card-header">
+        <h4 class="sub-header float-left">Product List</h4>
+        <button type="button" class="btn btn-primary float-right" (click)="open(content)">Create</button>
+    </div>
+    <div class="card-body">
+    
+    <form   #fsearch="ngForm" method="get" accept-charset="utf-8" (ngSubmit)="onSearch(fsearch)"> 
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="search" #search="ngModel" [ngModel]="inputSearchText"   placeholder="Search Product..." required>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="onClear(fsearch)">clear</button>
+                <button class="btn btn-outline-primary" type="submit" [disabled]="fsearch.invalid">Search</button>
+            </div>
+        </div> 
+    </form> 
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" width="80px">#</th>
+                    <th class="text-right" width="100px">Code</th>
+                    <th class="text-left" width="250px">Name</th>
+                    <th class="text-right" width="150px">Amount</th>
+                    <th class="text-right" width="150px">Price</th>
+                    <th class="text-center" width="150px">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product  of products; let i = index;">
+                    <td>{{ fromPaege + i }}</td>
+                    <td class="text-right">{{ product.code }}</td>
+                    <td>{{ product.name }}</td>
+                    <td class="text-right">{{ product.amount }}</td>
+                    <td class="text-right">{{ product.price | currency }}</td>
+                    <td class="text-center">
+                        <a class="btn btn-link" (click)="onEdit(product, content)">
+                            <span class="glyphicon glyphicon-pencil"> </span> Edit
+                        </a>
+                        <a class="btn btn-link" (click)="onDelete(product.id)">
+                            <span class="glyphicon glyphicon-trash"> </span> Delete
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="float-left">
+            <span>Total : {{ totalProduct }} Product</span>
+        </div>
+        <div class="float-right">
+            <nav *ngIf="totalProduct">
+                <ul class="pagination pagination-sm">
+                    <li class="page-item" [ngClass]="{ 'disabled': currentPage === 0}"><a href="#" (click)="prev($event)" class="page-link">Prev</a></li>
+                    <li class="page-item" *ngFor="let p of pageNumbers; let i = index;" id="" [ngClass]="{ 'active' : i === currentPage }">
+                        <a href="#" class="page-link" *ngIf="(i === currentPage) else canClick">{{ i+1 }}</a>
+                        <ng-template #canClick>
+                            <a href="#"  class="page-link" (click)="goto(i, $event)">{{ i+1 }}</a>
+                        </ng-template>
+                    </li>
+                    <li class="page-item" [ngClass]="{ 'disabled': lastPage === currentPage + 1 }"><a href="#" (click)="next($event)" class="page-link">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+</div>
+    </div>  
+</div>
+
+
+<!-- block modal create and edit  -->
+<ng-template #content let-c="close" let-d="dismiss" >
+ <div class="modal-header">
+   <h4 class="modal-title">{{ modal_title }}</h4>
+   <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+     <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f, c)">
+    <div class="form-row">
+        <input type="hidden" name="id" #id="ngModel" [(ngModel)]="product.selectedProduct.id">
+      <div class="col-md-6 mb-3">
+        <label for="validationServer01">Code</label>
+        <input type="number" name="code" #code="ngModel" [(ngModel)]="product.selectedProduct.code" [ngClass]="{ 'is-valid': code.valid && (code.dirty || code.touched), 'is-invalid': !code.valid && (code.dirty || code.touched) }" class="form-control" id="validationServer01" placeholder="Product code" value="" required>
+         
+        <div class="invalid-feedback">
+          Please input product number.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="validationServer02">Name</label>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="product.selectedProduct.name" [ngClass]="{ 'is-valid': name.valid && (name.dirty || name.touched), 'is-invalid': !name.valid && (name.dirty || name.touched) }" class="form-control" id="validationServer02" placeholder="Product name" value="" required>
+         
+        <div class="invalid-feedback">
+          Please input product name.
+        </div>
+      </div>
+
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationServer03">Price</label>
+        <input type="number" name="price" #price="ngModel" [(ngModel)]="product.selectedProduct.price" [ngClass]="{ 'is-valid': price.valid && (price.dirty || price.touched), 'is-invalid': !price.valid && (price.dirty || price.touched) }" class="form-control" id="validationServer03" placeholder="Product price" required>
+         
+        <div class="invalid-feedback">
+          Please input product price.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="validationServer04">Amount</label>
+        <input type="number" name="amount" #amount="ngModel" [(ngModel)]="product.selectedProduct.amount" [ngClass]="{ 'is-valid': amount.valid && (amount.dirty || amount.touched), 'is-invalid': !amount.valid && (amount.dirty || amount.touched) }" class="form-control" id="validationServer04" placeholder="Product amount" required>
+        
+        <div class="invalid-feedback">
+          Please input product amount.
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group text-right">
+        <button [disabled]="!f.valid" type="submit" class="btn btn-outline-primary">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
+    </div>
+
+  </form>
+ </div>
+ <div class="modal-footer">
+ </div>
+</ng-template>
