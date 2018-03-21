@@ -9,7 +9,7 @@
 </p>
 
 ## How to install
-- [``` git clone https://github.com/sokhasen/ng5-laravel5.5-starter.git ```]
+- [``` git clone https://github.com/sokhasen/producApp.git ```]
 - [``` cd ng5-laravel5.5-starter ```]
 - [``` composer install ```]
 - copy [``` .env.example ```] to [``` .env ```] file
