@@ -336,7 +336,7 @@ var ProductListComponent = /** @class */ (function () {
             if (form.value.id) {
                 this.product.update(form.value).subscribe(function (res) {
                     if (res['code'] === 200) {
-                        _this.getProducts(0, _this.inputSearchText, 0);
+                        _this.getProducts(_this.currentPage, _this.inputSearchText, 0);
                         _this.toastr.success('One has been updated!', 'Update');
                         close();
                     }
@@ -382,7 +382,7 @@ var ProductListComponent = /** @class */ (function () {
         if (window.confirm('Are you sure?')) {
             this.product.delete(id).subscribe(function (res) {
                 if (res['code'] === 200) {
-                    _this.getProducts(0, _this.inputSearchText, 0);
+                    _this.getProducts(_this.currentPage, _this.inputSearchText, 0);
                     _this.toastr.warning('One has been deleted!', 'Delete');
                 }
             }, function (err) {

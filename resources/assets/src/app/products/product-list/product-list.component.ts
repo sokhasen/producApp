@@ -114,7 +114,7 @@ export class ProductListComponent implements OnInit {
         if (form.value.id) {
             this.product.update(form.value).subscribe( res => {
                 if (res['code'] === 200) {
-                    this.getProducts(0, this.inputSearchText, 0);
+                    this.getProducts(this.currentPage, this.inputSearchText, 0);
                     this.toastr.success('One has been updated!', 'Update');
                     close();
                 }
@@ -163,7 +163,7 @@ export class ProductListComponent implements OnInit {
         if (window.confirm('Are you sure?')) {
             this.product.delete(id).subscribe( res => {
                 if (res['code'] === 200) {
-                    this.getProducts(0, this.inputSearchText, 0);
+                    this.getProducts(this.currentPage, this.inputSearchText, 0);
                     this.toastr.warning('One has been deleted!', 'Delete');
                 }
             },
